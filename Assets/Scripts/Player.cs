@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private GameManager gameManager;
 
     [SerializeField] private int maxHP = 50;
     [SerializeField] private float currentHP;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHP = maxHP;
         UpdateHpBar();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     void Update()
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
     {
         currentHP = 0;
         Destroy(gameObject);
+        gameManager.GameOver();
     }
 
     private void UpdateHpBar()
